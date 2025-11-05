@@ -11,18 +11,21 @@
   <style>
     /* ===== GLOBAL ===== */
     :root{
-      --brown-1: #f4e1c1; /* hero light */
-      --brown-2: #d9b78f; /* hero mid */
-      --brown-3: #e8caa4; /* about light */
+      --brown-1: #efe2d0; /* hero light */
+      --brown-2: #d6b393; /* hero mid */
+      --brown-3: #ebd7c0; /* about light */
       --brown-4: #c8a878; /* about mid */
       --brown-5: #b89466; /* quotes start */
       --brown-6: #9e7a52; /* quotes end */
       --brown-7: #8b6b47; /* contact start */
       --brown-8: #6e4f33; /* contact end */
-      --nav: #4b2e05;
-      --accent: #ffcc66;
-      --text-dark: #2b1d0e;
-      --muted: #5c3f1d;
+      --nav: #51331a;
+      --accent: #d6b393;
+      --text-dark: #422a16; /* dark brown for text */
+      --muted: #6e5141;      /* muted brown */
+      --input-bg: #f7e6d0;   /* light brown for form fields */
+      --footer-bg: #ebd7c0;  /* for footer */
+      --shadow-dark: rgba(102, 72, 41, 0.18);
     }
 
     * { box-sizing: border-box; }
@@ -32,9 +35,7 @@
       font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
       color: var(--text-dark);
       line-height: 1.45;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      background: #fff;
+      background: var(--brown-1);
       scroll-behavior: smooth;
     }
 
@@ -47,16 +48,16 @@
       align-items:center;
       padding:14px 6%;
       background: var(--nav);
-      color:#fff;
+      color:var(--brown-1);
       position: sticky;
       top: 0;
       z-index: 40;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+      box-shadow: 0 4px 14px var(--shadow-dark);
     }
     .logo { font-weight:700; font-size:1.25rem; letter-spacing:0.2px; }
     .nav-links { display:flex; gap:20px; list-style:none; margin:0; padding:0; }
-    .nav-links a { color: #fff; font-weight:600; opacity:0.95; transition: color .2s ease, transform .15s ease; }
-    .nav-links a:hover { color: var(--accent); transform: translateY(-2px); cursor: pointer; }
+    .nav-links a { color: var(--brown-1); font-weight:600; opacity:0.95; transition: color .2s ease, transform .15s ease; }
+    .nav-links a:hover { color: var(--brown-2); background: rgba(102, 72, 41, 0.07); transform: translateY(-2px); cursor: pointer; border-radius:4px; padding: 2px 6px; }
 
     /* ===== HERO ===== */
     .hero {
@@ -83,8 +84,8 @@
     }
     .hero-cta {
       display:inline-block;
-      background: var(--nav);
-      color:#fff;
+      background: var(--brown-6);
+      color:var(--brown-1);
       padding:12px 18px;
       border-radius:9px;
       font-weight:600;
@@ -92,7 +93,7 @@
       cursor:pointer;
       transition: transform .22s ease, background .22s ease;
     }
-    .hero-cta:hover { transform: scale(1.05); background:#6b4511; }
+    .hero-cta:hover { transform: scale(1.05); background:var(--brown-7); color: var(--brown-1); }
 
     .hero-image {
       width: 420px;
@@ -102,8 +103,10 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.28);
+      box-shadow: 0 10px 30px var(--shadow-dark);
       flex-shrink:0;
+      background-color: var(--brown-5); /* fallback */
+      border: 2px solid var(--brown-3);
     }
 
     /* ===== ABOUT / FACTS ===== */
@@ -127,23 +130,24 @@
       flex-wrap:wrap;
     }
     .fact-card {
-      background:#f5e2c8;
+      background:var(--brown-1);
       width: 260px;
       padding:18px;
       border-radius:10px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      box-shadow: 0 6px 18px var(--shadow-dark);
       transition: transform .25s ease, box-shadow .25s ease;
       text-align:left;
+      border: 1px solid var(--brown-2);
     }
-    .fact-card h3 { margin:0 0 8px; font-size:1.05rem; }
-    .fact-card p { margin:0; color:#4b341f; }
-    .fact-card:hover { transform: translateY(-8px); box-shadow: 0 12px 28px rgba(0,0,0,0.16); }
+    .fact-card h3 { margin:0 0 8px; font-size:1.05rem; color: var(--muted);}
+    .fact-card p { margin:0; color: var(--nav);}
+    .fact-card:hover { transform: translateY(-8px); box-shadow: 0 12px 28px rgba(102, 72, 41, 0.26); background: var(--brown-3); }
 
     /* ===== QUOTES ===== */
     .quotes-section {
       padding: 64px 6%;
       background: linear-gradient(135deg, var(--brown-5), var(--brown-6));
-      color: #fff5e1;
+      color: var(--brown-1);
       text-align:center;
     }
     .quotes-section h2 { margin:0 0 24px; font-size:1.9rem; }
@@ -156,21 +160,23 @@
     .quote-card {
       padding:18px;
       border-radius:12px;
-      background: rgba(255,255,255,0.08);
+      background: rgba(102,72,41,0.10);
       font-style: italic;
       display:flex;
       align-items:center;
       justify-content:center;
       min-height:110px;
       transition: transform .22s ease, background .22s ease;
+      color: var(--brown-1);
+      border: 1px solid rgba(184, 148, 102, 0.08);
     }
-    .quote-card:hover { transform: scale(1.04); background: rgba(255,255,255,0.16); cursor:default; }
+    .quote-card:hover { transform: scale(1.04); background: rgba(102,72,41,0.16); cursor:default; }
 
     /* ===== CONTACT ===== */
     .contact {
       padding: 64px 6%;
       background: linear-gradient(135deg, var(--brown-7), var(--brown-8));
-      color: #fff;
+      color: var(--brown-1);
       text-align:center;
     }
     .contact h2 { margin:0 0 20px; font-size:1.9rem; }
@@ -180,24 +186,33 @@
       max-width: 92%;
       padding:12px 14px;
       border-radius:8px;
-      border: none;
+      border: 1px solid var(--brown-4);
       font-size:1rem;
+      background: var(--input-bg);
+      color: var(--text-dark);
     }
-    .contact-form input:focus { outline:none; box-shadow: 0 0 0 3px rgba(255,204,102,0.12); }
+    .contact-form input:focus { outline:none; box-shadow: 0 0 0 3px rgba(184,148,102,0.22); }
     .contact-btn {
       padding:12px 20px;
       border-radius:8px;
       border:none;
-      background: var(--brown-1);
+      background: var(--brown-2);
       color: var(--text-dark);
       font-weight:700;
       cursor:pointer;
       transition: transform .2s ease, background .2s ease;
     }
-    .contact-btn:hover { transform: scale(1.05); background: #f1d4aa; }
+    .contact-btn:hover { transform: scale(1.05); background: var(--brown-3); }
 
-    /* ===== FOOTER (optional small) ===== */
-    footer{ text-align:center; padding:18px 6%; font-size:.9rem; color: rgba(43,29,14,0.8); }
+    /* ===== FOOTER ===== */
+    footer{
+      text-align:center; 
+      padding:18px 6%; 
+      font-size:.9rem; 
+      color: var(--muted);
+      background: var(--footer-bg);
+      border-top:1px solid var(--brown-4);
+    }
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 980px){
@@ -206,7 +221,7 @@
       .fact-card{ width:220px; }
     }
     @media (max-width: 760px){
-      .nav-links{ display:none; } /* keep navbar simple on mobile, can be replaced with hamburger later */
+      .nav-links{ display:none; }
       .hero{ flex-direction:column; text-align:center; padding:6% 5%; }
       .hero-text{ order:2; }
       .hero-image{ order:1; width:100%; height:360px; border-radius:10px; margin-bottom:18px; }
@@ -249,8 +264,7 @@
   <!-- ABOUT -->
   <section id="about" class="info-section" aria-labelledby="about-heading">
     <h2 id="about-heading">About The Bard</h2>
-    <p>William Shakespeare (1564–1616) was an English playwright, poet, and actor. His plays — tragedies, comedies, and histories — reshaped English drama and introduced countless words and phrases into the language. His exploration of human emotion and moral complexity resonates to this day.</p>
-
+    <p>William Shakespeare (1564–1616) was an English playwright, poet, and actor. His plays — tragedies, comedies, and histories — reshaped English drama and introduced countless words and phrases to the English language.</p>
     <div class="facts" aria-hidden="false">
       <div class="fact-card">
         <h3>Early Life</h3>
