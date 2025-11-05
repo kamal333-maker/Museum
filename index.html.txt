@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>William Shakespeare Tribute</title>
+
+  <!-- Google Font: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">Shakespeare’s Legacy</div>
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">Biography</a></li>
+      <li><a href="#quotes">Quotes</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero">
+    <div class="hero-text">
+      <h1>William Shakespeare</h1>
+      <p>“All the world’s a stage, and all the men and women merely players.”  
+      Celebrate the timeless legacy of the Bard of Avon, whose words continue to move hearts and inspire minds across centuries.</p>
+      <button class="hero-btn">Explore Works</button>
+    </div>
+
+    <div class="hero-image" style="background-image: url('images/shakespeare.jpg');"></div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="info-section">
+    <h2>About The Bard</h2>
+    <p>
+      William Shakespeare (1564–1616) was an English playwright, poet, and actor, often called England’s national poet and the “Bard of Avon.”  
+      His works—spanning tragedies, comedies, and histories—revolutionized English literature. Through vivid language and emotional depth,  
+      Shakespeare explored the beauty and tragedy of human existence like no one else.
+    </p>
+    <div class="facts">
+      <div class="fact-card">
+        <h3>Early Life</h3>
+        <p>Born in Stratford-upon-Avon, England, on April 23, 1564, Shakespeare was educated at the local grammar school where he discovered his passion for language and drama.</p>
+      </div>
+      <div class="fact-card">
+        <h3>Major Works</h3>
+        <p>His most notable plays include <em>Hamlet</em>, <em>Romeo and Juliet</em>, <em>Macbeth</em>, and <em>Othello</em>.</p>
+      </div>
+      <div class="fact-card">
+        <h3>Lasting Impact</h3>
+        <p>His influence on storytelling, poetry, and the English language is unparalleled — introducing over 1,700 new words still in use today.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quotes Section -->
+  <section id="quotes" class="quotes-section">
+    <h2>Timeless Quotes</h2>
+    <div class="quote-container">
+      <div class="quote-card">“To be, or not to be, that is the question.”</div>
+      <div class="quote-card">“The fool doth think he is wise, but the wise man knows himself to be a fool.”</div>
+      <div class="quote-card">“Love all, trust a few, do wrong to none.”</div>
+      <div class="quote-card">“We know what we are, but know not what we may be.”</div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <h2>Contact Us</h2>
+    <form class="contact-form">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <button type="submit" class="contact-btn">Send Message</button>
+    </form>
+  </section>
+
+</body>
+</html>
