@@ -1,67 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>William Shakespeare Tribute</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>William Shakespeare — Tribute</title>
 
-  <!-- Google Font: Inter -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Inter font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ===== GLOBAL ===== */
+    :root{
+      --brown-1: #f4e1c1; /* hero light */
+      --brown-2: #d9b78f; /* hero mid */
+      --brown-3: #e8caa4; /* about light */
+      --brown-4: #c8a878; /* about mid */
+      --brown-5: #b89466; /* quotes start */
+      --brown-6: #9e7a52; /* quotes end */
+      --brown-7: #8b6b47; /* contact start */
+      --brown-8: #6e4f33; /* contact end */
+      --nav: #4b2e05;
+      --accent: #ffcc66;
+      --text-dark: #2b1d0e;
+      --muted: #5c3f1d;
+    }
+
+    * { box-sizing: border-box; }
+    html,body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color: var(--text-dark);
+      line-height: 1.45;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background: #fff;
+      scroll-behavior: smooth;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ===== NAVBAR ===== */
+    .navbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:14px 6%;
+      background: var(--nav);
+      color:#fff;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+    }
+    .logo { font-weight:700; font-size:1.25rem; letter-spacing:0.2px; }
+    .nav-links { display:flex; gap:20px; list-style:none; margin:0; padding:0; }
+    .nav-links a { color: #fff; font-weight:600; opacity:0.95; transition: color .2s ease, transform .15s ease; }
+    .nav-links a:hover { color: var(--accent); transform: translateY(-2px); cursor: pointer; }
+
+    /* ===== HERO ===== */
+    .hero {
+      display:flex;
+      align-items:center;
+      gap:40px;
+      padding:5% 6%;
+      background: linear-gradient(135deg, var(--brown-1), var(--brown-2));
+      min-height: 70vh;
+      flex-wrap:wrap;
+    }
+    .hero-text { flex:1; min-width:280px; max-width:620px; }
+    .hero-text h1 {
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      margin:0 0 16px;
+      color: var(--text-dark);
+      line-height:1.05;
+    }
+    .hero-text p {
+      margin:0 0 20px;
+      color: var(--muted);
+      font-weight: 400;
+      font-size: 1.05rem;
+    }
+    .hero-cta {
+      display:inline-block;
+      background: var(--nav);
+      color:#fff;
+      padding:12px 18px;
+      border-radius:9px;
+      font-weight:600;
+      border: none;
+      cursor:pointer;
+      transition: transform .22s ease, background .22s ease;
+    }
+    .hero-cta:hover { transform: scale(1.05); background:#6b4511; }
+
+    .hero-image {
+      width: 420px;
+      height: 520px;
+      min-width: 260px;
+      border-radius: 12px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.28);
+      flex-shrink:0;
+    }
+
+    /* ===== ABOUT / FACTS ===== */
+    .info-section {
+      padding: 70px 6%;
+      background: linear-gradient(135deg, var(--brown-3), var(--brown-4));
+      color: var(--text-dark);
+      text-align: center;
+    }
+    .info-section h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); margin: 0 0 18px; }
+    .info-section p {
+      max-width: 900px;
+      margin: 0 auto 34px;
+      color: var(--text-dark);
+      font-size: 1.05rem;
+    }
+    .facts {
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+    .fact-card {
+      background:#f5e2c8;
+      width: 260px;
+      padding:18px;
+      border-radius:10px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      transition: transform .25s ease, box-shadow .25s ease;
+      text-align:left;
+    }
+    .fact-card h3 { margin:0 0 8px; font-size:1.05rem; }
+    .fact-card p { margin:0; color:#4b341f; }
+    .fact-card:hover { transform: translateY(-8px); box-shadow: 0 12px 28px rgba(0,0,0,0.16); }
+
+    /* ===== QUOTES ===== */
+    .quotes-section {
+      padding: 64px 6%;
+      background: linear-gradient(135deg, var(--brown-5), var(--brown-6));
+      color: #fff5e1;
+      text-align:center;
+    }
+    .quotes-section h2 { margin:0 0 24px; font-size:1.9rem; }
+    .quote-container {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap:18px;
+      align-items:stretch;
+    }
+    .quote-card {
+      padding:18px;
+      border-radius:12px;
+      background: rgba(255,255,255,0.08);
+      font-style: italic;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:110px;
+      transition: transform .22s ease, background .22s ease;
+    }
+    .quote-card:hover { transform: scale(1.04); background: rgba(255,255,255,0.16); cursor:default; }
+
+    /* ===== CONTACT ===== */
+    .contact {
+      padding: 64px 6%;
+      background: linear-gradient(135deg, var(--brown-7), var(--brown-8));
+      color: #fff;
+      text-align:center;
+    }
+    .contact h2 { margin:0 0 20px; font-size:1.9rem; }
+    .contact-form { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:18px; }
+    .contact-form input {
+      width: 320px;
+      max-width: 92%;
+      padding:12px 14px;
+      border-radius:8px;
+      border: none;
+      font-size:1rem;
+    }
+    .contact-form input:focus { outline:none; box-shadow: 0 0 0 3px rgba(255,204,102,0.12); }
+    .contact-btn {
+      padding:12px 20px;
+      border-radius:8px;
+      border:none;
+      background: var(--brown-1);
+      color: var(--text-dark);
+      font-weight:700;
+      cursor:pointer;
+      transition: transform .2s ease, background .2s ease;
+    }
+    .contact-btn:hover { transform: scale(1.05); background: #f1d4aa; }
+
+    /* ===== FOOTER (optional small) ===== */
+    footer{ text-align:center; padding:18px 6%; font-size:.9rem; color: rgba(43,29,14,0.8); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 980px){
+      .hero{ padding:6% 5%; }
+      .hero-image{ width:360px; height:460px; }
+      .fact-card{ width:220px; }
+    }
+    @media (max-width: 760px){
+      .nav-links{ display:none; } /* keep navbar simple on mobile, can be replaced with hamburger later */
+      .hero{ flex-direction:column; text-align:center; padding:6% 5%; }
+      .hero-text{ order:2; }
+      .hero-image{ order:1; width:100%; height:360px; border-radius:10px; margin-bottom:18px; }
+      .facts{ flex-direction:column; align-items:center; }
+      .quote-container{ grid-template-columns: 1fr; }
+      .contact-form{ flex-direction:column; }
+    }
+    @media (max-width:420px){
+      .hero-text h1{ font-size:1.8rem; }
+      .hero-text p{ font-size:0.98rem; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Navbar -->
+  <!-- NAV -->
   <nav class="navbar">
     <div class="logo">Shakespeare’s Legacy</div>
-    <ul class="nav-links">
+    <ul class="nav-links" aria-label="Primary Navigation">
       <li><a href="#hero">Home</a></li>
-      <li><a href="#about">Biography</a></li>
+      <li><a href="#about">About</a></li>
       <li><a href="#quotes">Quotes</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
-  <!-- Hero Section -->
-  <section id="hero" class="hero">
+  <!-- HERO -->
+  <section id="hero" class="hero" aria-labelledby="hero-heading">
     <div class="hero-text">
-      <h1>William Shakespeare</h1>
-      <p>“All the world’s a stage, and all the men and women merely players.”  
-      Celebrate the timeless legacy of the Bard of Avon, whose words continue to move hearts and inspire minds across centuries.</p>
-      <button class="hero-btn">Explore Works</button>
+      <h1 id="hero-heading">William Shakespeare</h1>
+      <p>“All the world’s a stage, and all the men and women merely players.”<br>
+      Explore the life, language, and dramatic genius of the Bard of Avon — a writer whose words still shape our culture.</p>
+      <a class="hero-cta" href="#about">Explore Works</a>
     </div>
 
-    <div class="hero-image" style="background-image: url('images/shakespeare.jpg');"></div>
+    <!-- background image: replace image file at images/shakespeare.jpg -->
+    <div class="hero-image" style="background-image: url('images/shakespeare.jpg');" role="img" aria-label="Portrait of William Shakespeare"></div>
   </section>
 
-  <!-- About Section -->
-  <section id="about" class="info-section">
-    <h2>About The Bard</h2>
-    <p>
-      William Shakespeare (1564–1616) was an English playwright, poet, and actor, often called England’s national poet and the “Bard of Avon.”  
-      His works—spanning tragedies, comedies, and histories—revolutionized English literature. Through vivid language and emotional depth,  
-      Shakespeare explored the beauty and tragedy of human existence like no one else.
-    </p>
-    <div class="facts">
+  <!-- ABOUT -->
+  <section id="about" class="info-section" aria-labelledby="about-heading">
+    <h2 id="about-heading">About The Bard</h2>
+    <p>William Shakespeare (1564–1616) was an English playwright, poet, and actor. His plays — tragedies, comedies, and histories — reshaped English drama and introduced countless words and phrases into the language. His exploration of human emotion and moral complexity resonates to this day.</p>
+
+    <div class="facts" aria-hidden="false">
       <div class="fact-card">
         <h3>Early Life</h3>
-        <p>Born in Stratford-upon-Avon, England, on April 23, 1564, Shakespeare was educated at the local grammar school where he discovered his passion for language and drama.</p>
+        <p>Born in Stratford-upon-Avon on April 23, 1564. Educated at the local grammar school, he quickly showed a flair for language and performance.</p>
       </div>
       <div class="fact-card">
         <h3>Major Works</h3>
-        <p>His most notable plays include <em>Hamlet</em>, <em>Romeo and Juliet</em>, <em>Macbeth</em>, and <em>Othello</em>.</p>
+        <p>Some signature works: <em>Hamlet</em>, <em>Macbeth</em>, <em>Othello</em>, <em>King Lear</em>, and <em>Romeo and Juliet</em>.</p>
       </div>
       <div class="fact-card">
-        <h3>Lasting Impact</h3>
-        <p>His influence on storytelling, poetry, and the English language is unparalleled — introducing over 1,700 new words still in use today.</p>
+        <h3>Legacy</h3>
+        <p>Credited with coining or popularizing hundreds of words and phrases (over 1,700 word usages are often attributed to him).</p>
       </div>
     </div>
   </section>
 
-  <!-- Quotes Section -->
-  <section id="quotes" class="quotes-section">
-    <h2>Timeless Quotes</h2>
+  <!-- QUOTES -->
+  <section id="quotes" class="quotes-section" aria-labelledby="quotes-heading">
+    <h2 id="quotes-heading">Timeless Quotes</h2>
     <div class="quote-container">
       <div class="quote-card">“To be, or not to be, that is the question.”</div>
       <div class="quote-card">“The fool doth think he is wise, but the wise man knows himself to be a fool.”</div>
@@ -70,15 +278,19 @@
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="contact">
-    <h2>Contact Us</h2>
-    <form class="contact-form">
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <button type="submit" class="contact-btn">Send Message</button>
+  <!-- CONTACT -->
+  <section id="contact" class="contact" aria-labelledby="contact-heading">
+    <h2 id="contact-heading">Contact</h2>
+    <form class="contact-form" onsubmit="event.preventDefault(); alert('Thanks — your message has been received (demo).');">
+      <input type="text" name="name" placeholder="Your name" aria-label="Your name" required>
+      <input type="email" name="email" placeholder="Your email" aria-label="Your email" required>
+      <button class="contact-btn" type="submit">Send</button>
     </form>
   </section>
+
+  <footer aria-hidden="true">
+    © William Shakespeare Tribute — created for coursework
+  </footer>
 
 </body>
 </html>
